@@ -2252,61 +2252,7 @@ ul {
   z-index: 999;
 }
 
-/* line 11, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-.main_menu .navbar-brand {
-  padding: 0rem !important;
-}
 
-@media (max-width: 576px) {
-  /* line 11, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .main_menu .navbar-brand {
-    max-width: 120px;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  /* line 11, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .main_menu .navbar-brand {
-    max-width: 130px;
-  }
-}
-
-/* line 23, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-.main_menu .navbar-toggler {
-  position: relative;
-  z-index: 1;
-}
-
-/* line 27, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-.main_menu .navbar-toggler:after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background-size: 200% auto;
-}
-
-/* line 40, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-.main_menu .navbar {
-  padding: 0;
-}
-
-@media (max-width: 576px) {
-  /* line 40, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .main_menu .navbar {
-    padding: 15px 0;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  /* line 40, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .main_menu .navbar {
-    padding: 15px 0;
-  }
-}
 
 /* line 52, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
 .main_menu .main-menu-item {
@@ -2324,7 +2270,7 @@ ul {
 /* line 61, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
 .main_menu .main-menu-item ul li .nav-link {
   color: #242429;
-  font-size: 14px;
+  font-size: 25px;
   padding: 38px 23px;
   font-family: "Playfair Display", serif;
   line-height: 13px;
@@ -2384,30 +2330,9 @@ ul {
 }
 
 @media (max-width: 991px) {
-  /* line 123, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .single_page_menu .navbar-collapse ul li .nav-link {
-    color: #000 !important;
-  }
-  /* line 131, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .main_menu .navbar {
-    padding: 15px 0;
-  }
-  /* line 135, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .navbar-light .navbar-toggler {
-    border-color: transparent;
-    padding: 0;
-  }
-  /* line 140, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .navbar-collapse {
-    z-index: 9999 !important;
-    position: absolute;
-    left: 0;
-    top: 62px;
-    width: 100%;
-    background-color: #fff;
-    text-align: center !important;
-    box-shadow: 0px 11px 9px -5px rgba(0, 0, 0, 0.2);
-  }
+  
+
+ 
   /* line 151, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
   .main_menu .main-menu-item {
     text-align: left !important;
@@ -2420,10 +2345,7 @@ ul {
   .main_menu .main-menu-item .nav-item a {
     padding: 5px 15px !important;
   }
-  /* line 163, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
-  .navbar-nav {
-    align-items: start !important;
-  }
+
   /* line 168, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_menu.scss */
   .dropdown .dropdown-menu {
     transform: scale(1, 0);
