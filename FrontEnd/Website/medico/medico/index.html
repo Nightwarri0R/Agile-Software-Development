@@ -68,35 +68,40 @@
                                     <br><input style="width: 50%" Injury code type="text">
                                     
                                 </p>
-                                        <p> Price Range Max
-                                            <br><input style="width: 50%" type="number" name="points" min="0" max="20000"placeholder=$20000 > 
+                                    <p> Price Range Max
+                                        <br><input style="width: 50%" type="number" name="points" min="0" max="20000"placeholder=$20000 > 
+                                    </p>
+                                        <p>Distance Range
+                                            <br><input style="width: 50%"   type="number" name="points" min="0" max="3000"placeholder=250 > 
                                         </p>
-                                                <p>Distance Range
-                                                    <br><input style="width: 50%"   type="number" name="points" min="0" max="3000"placeholder=250 > 
-                                                </p>
-                                                <br><p>
-                                                    <h4>Customer address<h4>
-                                                    
-                                                    <p>Enetr zip code
-                                                        <br><input style="width: 40%" name="Zip Code" type="text" placeholder="Example: 69874">
+                                            <br><p>
+                                                <h4>Customer address<h4>
+                                                
+                                                <p>Enter zip code
+                                                    <br><input style="width: 40%" name="Zip Code" type="text" placeholder="Example: 69874">
 
                                                     </p>
-                                                    
                                                     <p> Or </p>
                                                     <a> 
-                                                        <button id = "get_location" >Live Location</button>
-                                                        <script type = "text/javascript">
-                                                            if(navigator.geolocation){
-                                                            navigator.geolocation.getCurrentPosition(position => {
-                                                                console.log(position.coords);
-                                                            });
-                                                            } else {
-                                                                console.log("Error occured");
+                                                        <button id = "curr_location" onclick="get_location()" >Live Location</button>
                                                             
+                                                            <script type="text/javascript">
+                                                                var curr_location = document.getElementById('curr_location');
+
+                                                                function get_location(){
+
+                                                                if(navigator.geolocation){
+                                                                navigator.geolocation.getCurrentPosition(position => {
+                                                                    console.log(position.coords);
+                                                                });
+                                                                } else {
+                                                                    console.log("Error occured");
+                                                                
+                                                            }
+                                                            
+                                                                console.log("Hi there")
                                                         }
-                                                        
-                                                            console.log("Hi there")
-                                                        </script>
+                                                            </script>
                                                             
                                                     </a>
                                                     
