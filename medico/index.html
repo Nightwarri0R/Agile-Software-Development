@@ -61,13 +61,40 @@
                     <div class="banner_text">
                         <div class="banner_text_iner">
                             <h2>Enter Your Details:</h2>
-                            <form>
-                                <p>Type of injury<br><input style="width: 50%" Injury code type="text"></p>
+                            <form name="myForm" action="file:///C:/Users/amygo/Documents/GitHub/Agile-Software-Development/medico/results.html">
+                                <p>Type of injury*<br><input style="width: 50%" Injury code type="text" id="injuryType" required></p>
                                 <p> Price Range Max<br><input style="width: 50%" type="number" name="points" min="0" max="20000"placeholder=$20000></p>
                                 <p>Distance Range<br><input style="width: 50%"   type="number" name="points" min="0" max="3000"placeholder=250></p>       
-                                <p>Zip code<br><input style="width: 40%" name="Zip Code" type="text" placeholder="Example: 69874">
-                                    -OR-<a href="https://geocoder.ls.hereapi.com/6.2/geocode.json" class="genric-btn default radius" id="get_location">Live Location</a></p>
-                                <p><a><br><a href="#" class="genric-btn info radius" id="search_button">Search</a></a></p>
+                                <p>Zip code*<br><input style="width: 40%" name="Zip Code" type="text" placeholder="Example: 69874" required>
+                                    -OR-
+                                    <a> 
+                                        <button id = "curr_location" class="generic-btn default radius" onclick="get_location()" >Live Location</button>
+                                            
+                                            <script type="text/javascript">
+                                                var curr_location = document.getElementById('curr_location');
+
+                                                function get_location(){
+
+                                                if(navigator.geolocation){
+                                                navigator.geolocation.getCurrentPosition(position => {
+                                                    console.log(position.coords);
+                                                });
+                                                } else {
+                                                    console.log("Error occured");
+                                                
+                                            }
+                                            
+                                                console.log("Hi there")
+                                        }
+                                            </script>
+                                            
+                                    </a>
+                                <p>*Required</p>
+
+                                <p><button type="submit" name="Submit"><i>Search</i></button></p>
+
+                                <!--<p><br><a href="results.html" class="genric-btn info radius" id="search_button" onclick="validation()">Search</a></p>-->
+                                
                             </form>
                         </div>
                     </div>
@@ -84,6 +111,24 @@
     <!-- banner part start-->
 
     <!-- jquery plugins here-->
+    
+    <!-- Validation
+    <script>
+    function validation() {
+        if (document.getElementById("injuryType").value != "") {} else {
+            alert("Please enter a value");
+        }
+    }
+
+    function validation() {
+    var x = document.getElementById("injuryType").value;
+    if (x == "") 
+    text = "This is a required field";
+
+    document.getElementById("injuryType").innerHTML = text;
+}
+
+    </script>-->
 
     <script src="js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
