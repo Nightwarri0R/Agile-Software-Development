@@ -82,28 +82,29 @@
 
                                                     </p>
                                                     <p> Or </p>
-                                                    <a> 
-                                                        <button id = "curr_location" onclick="get_location()" >Live Location</button>
+                                                    <div>
+                                                        <button type="button" id = "curr_location" onclick="get_location()">Live Location</button>
                                                             
-                                                            <script type="text/javascript">
+                                                            <!--<script type="text/javascript">
+                                                                
                                                                 var curr_location = document.getElementById('curr_location');
 
                                                                 function get_location(){
-
-                                                                if(navigator.geolocation){
-                                                                navigator.geolocation.getCurrentPosition(position => {
-                                                                    console.log(position.coords);
-                                                                });
-                                                                } else {
-                                                                    console.log("Error occured");
-                                                                
-                                                            }
+                                                    
+                                                                        if(navigator.geolocation){
+                                                                        navigator.geolocation.getCurrentPosition(position => {
+                                                                            console.log(position.coords);
+                                                                        });
+                                                                        } else {
+                                                                            console.log("Error occured");
+                                                                            console.log("Hi there")
+                                                                    }
                                                             
-                                                                console.log("Hi there")
+                                                                    
                                                         }
-                                                            </script>
+                                                            </script> -->
                                                             
-                                                    </a>
+                                                    </div>
                                                     
 
                                                 
@@ -172,6 +173,8 @@
     <script src="js/contact.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <!-- Map/Location script-->
+    <script src="js/mapApi.js"></script>
     
 </body>
 
