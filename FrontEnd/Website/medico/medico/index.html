@@ -68,7 +68,7 @@
                                     <br><input style="width: 50%" Injury code type="text">
                                     
                                 </p>
-                                    <p> Price Range Max
+                                    <p>Price Range Max
                                         <br><input style="width: 50%" type="number" name="points" min="0" max="20000"placeholder=$20000 > 
                                     </p>
                                         <p>Distance Range
@@ -78,31 +78,12 @@
                                                 <h4>Customer address<h4>
                                                 
                                                 <p>Enter zip code
-                                                    <br><input style="width: 40%" name="Zip Code" type="text" placeholder="Example: 69874">
+                                                    <br><input style="width: 40%" name="zip_code" type="text" placeholder="Example: 69874">
 
                                                     </p>
                                                     <p> Or </p>
                                                     <div>
                                                         <button type="button" id = "curr_location" onclick="get_location()">Live Location</button>
-                                                            
-                                                            <!--<script type="text/javascript">
-                                                                
-                                                                var curr_location = document.getElementById('curr_location');
-
-                                                                function get_location(){
-                                                    
-                                                                        if(navigator.geolocation){
-                                                                        navigator.geolocation.getCurrentPosition(position => {
-                                                                            console.log(position.coords);
-                                                                        });
-                                                                        } else {
-                                                                            console.log("Error occured");
-                                                                            console.log("Hi there")
-                                                                    }
-                                                            
-                                                                    
-                                                        }
-                                                            </script> -->
                                                             
                                                     </div>
                                                     
@@ -110,9 +91,9 @@
                                                 
                                                 </p>
                                                 <p>
-                                                    <a>
-                                                        <br><button  style = "width: 50%"name ="Submit">Submit Information</button>
-                                                    </a>
+                                                    <div>
+                                                        <br><button  style="width: 50%" id="Submit" onclick="submision()">Submit Information</button>
+                                                    </div>
                                                 </p>
                             </form>
 
