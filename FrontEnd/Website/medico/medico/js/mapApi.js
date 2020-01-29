@@ -15,12 +15,16 @@ function get_location(){
         console.log("Error occured");
         
 }
-
-
 }
-function zip_code_info(){
-    var zip_code = document.getElementById('Submit');
-    var zip = document.getElementsByName("zip_code").values(); 
+function return_input(){
+    var zip = document.getElementById("zip_code").nodeValue;
+    return zip;
+}
+
+
+function zip_code_info(zip){
+    console.log("hi there")
+    
     console.log(zip);
     $.ajax({
         url: 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
@@ -34,10 +38,12 @@ function zip_code_info(){
         apiKey: 'wS3zBaE7wLZ5Im9u7TfCFwbDmPABPKlSCCg_7s4JM-U'
         },
         success: function (data) {
-        alert(JSON.stringify(data));
+        JSON.parse(JSON.stringify(data));
+        console.log(data);
         }
     });
-
+    
+    console.log("Hello there ")
 }
 
 
