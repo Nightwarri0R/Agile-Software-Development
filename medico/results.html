@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+    <script src="js/mockData.js"></script>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,6 +28,36 @@
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style1.css">
 </head>
+
+<style>
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+      opacity: 1 !important;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      top: -5px;
+      right: 105%;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+    </style>
+
 
 <body>
     <!--::header part start::-->
@@ -111,25 +143,37 @@
                     </div>
                 </div>
 
-                <table id="dtVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                
+
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table id="resultsTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                     <thead>
-                        <tr>
-                        <th class="th-sm">Name
+                        <tr> 
+                        <th class="th-sm">Name              
                         </th>
                         <th class="th-sm">Address
                         </th>
                         <th class="th-sm">Price
                         </tr>
                     </thead>
+                    <tbody>
+                        <script>
+                            console.log(data)
+        
+                        </script>
+                    </tbody>
                 </table>
-
+                </div>
             </div>
         </div>
     </div>
 
   <!-- jquery plugins here-->
 
+  
+
   <script src="js/jquery-1.12.1.min.js"></script>
+  
   <!-- popper js -->
   <script src="js/popper.min.js"></script>
   <!-- bootstrap js -->
@@ -145,6 +189,8 @@
   <script src="js/contact.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
+  
+  <script src="js/dynamicTable.js"></script>
 </body>
 
 </html>
