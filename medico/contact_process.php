@@ -1,12 +1,30 @@
 <?php
 
-    $to = "rockybd1995@gmail.com";
-    $from = $_REQUEST['email'];
-    $name = $_REQUEST['name'];
-    $subject = $_REQUEST['subject'];
-    $number = $_REQUEST['number'];
-    $cmessage = $_REQUEST['message'];
+    //$to = "amy.gourlay@ntlworld.com";
+    $from = $_POST['email'];
+    $name = $_POST['name'];
+    $subject = $_POST['subject'];
+    $number = $_POST['number'];
+	$message = $_POST['message'];
+	
+	
+	$email_from = 'amy.gourlay@ntlworld.com';
 
+	$email_subject = "New Form submission";
+
+	$email_body = "You have received a new message from the user $name.\n".
+							"Here is the message:\n $message".
+							
+	$to = "amy.gourlay@ntlworld.com";
+
+	$headers = "From: $email_from \r\n";
+	
+	$headers .= "Reply-To: $visitor_email \r\n";
+	
+	mail($to,$email_subject,$email_body,$headers);
+
+
+	/*
     $headers = "From: $from";
 	$headers = "From: " . $from . "\r\n";
 	$headers .= "Reply-To: ". $from . "\r\n";
@@ -33,5 +51,6 @@
 	$body .= "</body></html>";
 
     $send = mail($to, $subject, $body, $headers);
+	*/
 
 ?>
