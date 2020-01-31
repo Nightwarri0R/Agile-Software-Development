@@ -1,5 +1,9 @@
+let pos;
+let cord;
+var url = medico/results.html; 
+
 /**
- * Funvtion that gets the users ive location from the browser
+ * Function that gets the users ive location from the browser
  * 
  */
 function get_location() {
@@ -8,15 +12,11 @@ function get_location() {
         navigator.geolocation.getCurrentPosition(position => {
             //console.log(position.coords);
             alert(position, coords);
-            var live_locaion = {};
-            position = live_locaion[0];
-            coords = live_locaion[1];
-            return live_locaion;
+            pos = position; 
+            cord = coords; 
         });
     } else {
         console.log("Error occured");
-
-
 
     }
 
@@ -24,6 +24,9 @@ function get_location() {
 
 
 
+/**
+ * Method that is used for returning the value of the current  code entered by the user
+ */
 function return_injury() {
     var injury = document.getElementById("procedure_type").value;
 
@@ -59,7 +62,7 @@ function user_input() {
         price: return_price(),
         distance: return_distance(),
         zip: return_input()
-    }
+    };
 }
 
 
@@ -68,41 +71,64 @@ function user_input() {
 
 function zip_code_info(zip) {
 
-    console.log("hi there")
+    console.log("hi there");
 
     console.log(zip);
-    $.ajax({
-        url: 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
-        type: 'GET',
-        dataType: 'jsonp',
-        jsonp: 'jsoncallback',
-        data: {
-            PostalCode: zip,
-            country: 'usa',
-            gen: '9',
-            apiKey: 'wS3zBaE7wLZ5Im9u7TfCFwbDmPABPKlSCCg_7s4JM-U'
-        },
-        success: function (data) {
-            JSON.stringify(data);
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+            type: 'GET',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            data: {
+                PostalCode: zip,
+                country: 'usa',
+                gen: '9',
+                apiKey: '-eGJp8gx7bCBX_ZnC56TIvGCssDMgCXdPl9ecE87g8Q'
+            },
+            success: function (data) {
+                JSON.stringify(data);
 
 
-            var lat = (data.Response.View[0].Result[0].Location.DisplayPosition.Latitude);
-            var lon = (data.Response.View[0].Result[0].Location.DisplayPosition.Longitude);
+                var lat = (data.Response.View[0].Result[0].Location.DisplayPosition.Latitude);
+                var lon = (data.Response.View[0].Result[0].Location.DisplayPosition.Longitude);
+                resolve({lat, lon})
 
-            send_backend(lat,lon);
-        }
+
+            }
+        });
     });
 }
 
-function send_backend(lat,lon){
 
-    console.log(lat,lon);
-}
+
+
 
 function submision() {
-    var input = user_input();
-    zip_code_info(input.zip.value);
-    console.log(input.injury, input.price, input.distance, input.zip);
 
+
+if(get_location()==true){
+    window.location = url
+
+}else if(zip_code_info()==true){
+
+    zip_code_info(input.zip)
+    .then((data)=>{
+        console.log("submission")
+        console.log(data.lat,);
+    })
+
+
+    console.log(input.zip, input.price, input.distance, input.injury);
+    
+    
+
+
+}else{
+    alert("An error has occured");
+}
+
+
+    
 }
 
