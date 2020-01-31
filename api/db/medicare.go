@@ -29,12 +29,16 @@ func (c *Client) GetMedicalDataByLocation(filter MedicalDataFilter, perPage, pag
 			pr.total_discharges, z.latitude, z.longitude,
 			round(
 				point(z.latitude, z.longitude)<@>point(?,?)
+<<<<<<< HEAD
 			) as distance
+=======
+			) * 1609.344 as distance
+>>>>>>> Unit tests WIP
 		from procedures pr
 		join provider_procedures pp on pp.procedure_id=pr.id
 		join providers p on p.id=pp.provider_id
 		join zip_code_lat_long z on z.zip_code=p.zip_code
-		order by distance) as res where res.distance<?	
+		order by distance) as res where res.distance<=?	
 	`
 
 	args := []interface{}{*filter.Latitude, *filter.Longitude, *filter.Proximity}
@@ -80,7 +84,7 @@ func (c *Client) GetMedicalDataByDescription(filter MedicalDataFilter, perPage, 
 		InnerJoin("provider_procedures pp", "pp.procedure_id=pr.id").
 		InnerJoin("providers p", "p.id=pp.provider_id").
 		InnerJoin("zip_code_lat_long zcll", "zcll.zip_code=p.zip_code").
-		OrderBy("average_total_payments ASC")
+		OrderBy("pr.average_total_payments ASC, p.name ASC")
 
 	// nolint: unparam
 	query = applyMedicalDataFilter(query, filter)
@@ -126,7 +130,7 @@ func (c *Client) CreateProvider(payload types.Provider) *types.Error {
 		VALUES ($1, $2, $3, $4, $5, $6, $7)`
 
 	_, err := c.ex.Exec(query, payload.ID, payload.Name,
-		payload.Street, payload.State, payload.ZipCode,
+		payload.Street, payload.City, payload.State, payload.ZipCode,
 		payload.HRRDescription)
 
 	return c.transformError(err)
@@ -235,10 +239,10 @@ func (c *Client) CreateZipCodeLatLong(payload types.ZipCodeLatLong) (*types.ZipC
 // nolint: unparam
 func applyMedicalDataFilter(query *builder.Builder, filter MedicalDataFilter) *builder.Builder {
 	if filter.PriceMax != nil {
-		query = query.And(builder.Lte{"pp.average_total_payments": *filter.PriceMax})
+		query = query.And(builder.Lte{"pr.average_total_payments": *filter.PriceMax})
 	}
 	if filter.PriceMin != nil {
-		query = query.And(builder.Gte{"pp.average_total_payments": *filter.PriceMin})
+		query = query.And(builder.Gte{"pr.average_total_payments": *filter.PriceMin})
 	}
 	if filter.Query != nil {
 		tokens := strings.Split(*filter.Query, " ")

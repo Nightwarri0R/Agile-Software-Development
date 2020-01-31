@@ -65,12 +65,12 @@ type ZipCodeLatLong struct {
 type Provider struct {
 	ID                int    `db:"id" json:"provider_id"`
 	Name              string `db:"name" json:"provider_name"`
-	Street            string `db:"_street" json:"provider_street"`
+	Street            string `db:"street" json:"provider_street"`
 	City              string `db:"city" json:"provider_city"`
-	State             string `db:"_state" json:"provider_state"`
+	State             string `db:"state" json:"provider_state"`
 	ZipCode           int    `db:"zip_code" json:"provider_zip_code"`
 	HRRDescription    string `db:"hrr_description" json:"hrr_description"`
-	AdressLine        string `db:"adress_line" json:"-"`
+	AdressLine        string `db:"address_line" json:"-"`
 	AddressLineTokens string `db:"address_line_tokens" json:"-"`
 }
 
