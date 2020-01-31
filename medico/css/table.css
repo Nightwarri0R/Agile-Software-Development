@@ -5,3 +5,7 @@ table.dataTable tbody tr.selected, table.dataTable tbody th.selected, table.data
 .full-span-col {
    column-span: all; 
 }
+
+div.dataTables_scrollBody {
+    height: 100%;
+}
