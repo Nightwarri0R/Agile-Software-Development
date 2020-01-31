@@ -1,6 +1,6 @@
 let pos;
 let cord;
-var url = medico/results.html; 
+var url = "results.html?"; 
 
 /**
  * Function that gets the users ive location from the browser
@@ -105,30 +105,24 @@ function zip_code_info(zip) {
 
 
 function submision() {
+var input = user_input();
 
 
-if(get_location()==true){
-    window.location = url
-
-}else if(zip_code_info()==true){
+{
 
     zip_code_info(input.zip)
     .then((data)=>{
         console.log("submission")
-        console.log(data.lat,);
+        console.log(data.lat, data.lon);
+        window.location = url +'query=' + input.injury & 'max_price='+input.price & 'proximity=' + input.distance & 'lat=' + data.lat & 'lon=' + data.lon; 
+
     })
 
 
     console.log(input.zip, input.price, input.distance, input.injury);
+
     
     
-
-
-}else{
-    alert("An error has occured");
+    
+    }
 }
-
-
-    
-}
-
