@@ -61,6 +61,7 @@
                     <div class="banner_text">
                         <div class="banner_text_iner">
                             <h2>Enter Your Details:</h2>
+                            <!--
                             <form name="myForm" action="file:///C:/Users/amygo/Documents/GitHub/Agile-Software-Development/medico/results.html">
                                 <p>Type of injury*<br><input style="width: 50%" Injury code type="text" id="injuryType" required></p>
                                 <p> Price Range Max<br><input style="width: 50%" type="number" name="points" min="0" max="20000"placeholder=$20000></p>
@@ -91,10 +92,31 @@
                                     </a>
                                 <p>*Required</p>
 
-                                <p><button type="submit" name="Submit"><i>Search</i></button></p>
+                                <p><button type="submit" name="Submit"><i>Search</i></button></p>-->
 
                                 <!--<p><br><a href="results.html" class="genric-btn info radius" id="search_button" onclick="validation()">Search</a></p>-->
                                 
+                            <!--</form>-->
+                            <form id = "Med_form" action="medico/results.html">
+                                <p>Type of procedure
+                                    <br><input  id = "procedure_type" style="width: 50%" type="text" required>
+                                </p>
+                                <p>Price Range Max
+                                    <br><input style="width: 50%" type="number" id="price_range" min="0" max="20000"placeholder=$20000> 
+                                </p>
+                                <p>Distance Range
+                                    <br><input style="width: 50%"   type="number" id ="distance_range" min="0" max="3000"placeholder=250> 
+                                </p>
+                                <p>Enter zip code
+                                    <br><input style="width: 40%" id="zip_code" type="number" placeholder="Example: 69874" required>
+                                    -Or-
+                                    <button type="button" id="curr_location" onclick="get_location()">Live Location</button>
+                                </p>
+                                <p>
+                                    
+                                        <br><button type="button" id="Submit" onclick="submision()">Search</button>
+                                    
+                                </p>
                             </form>
                         </div>
                     </div>
@@ -129,6 +151,7 @@
 }
 
     </script>-->
+    <script src="js/mapApi.js"></script>
 
     <script src="external/jQuery/js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
