@@ -29,11 +29,7 @@ func (c *Client) GetMedicalDataByLocation(filter MedicalDataFilter, perPage, pag
 			pr.total_discharges, z.latitude, z.longitude,
 			round(
 				point(z.latitude, z.longitude)<@>point(?,?)
-<<<<<<< HEAD
 			) as distance
-=======
-			) * 1609.344 as distance
->>>>>>> Unit tests WIP
 		from procedures pr
 		join provider_procedures pp on pp.procedure_id=pr.id
 		join providers p on p.id=pp.provider_id
@@ -84,7 +80,7 @@ func (c *Client) GetMedicalDataByDescription(filter MedicalDataFilter, perPage, 
 		InnerJoin("provider_procedures pp", "pp.procedure_id=pr.id").
 		InnerJoin("providers p", "p.id=pp.provider_id").
 		InnerJoin("zip_code_lat_long zcll", "zcll.zip_code=p.zip_code").
-		OrderBy("pr.average_total_payments ASC, p.name ASC")
+		OrderBy("pp.average_total_payments ASC, p.name ASC")
 
 	// nolint: unparam
 	query = applyMedicalDataFilter(query, filter)
@@ -103,10 +99,6 @@ func (c *Client) GetMedicalDataByDescription(filter MedicalDataFilter, perPage, 
 func (c *Client) GetFilteringData() (*types.FilteringData, *types.Error) {
 	log.Debugf("GetFilteringData")
 
-	/**
-	select to_json(array(select distinct pr.drg_definition from provider_procedures pp join procedures pr on pr.id=pp.procedure_id)) as drg_definitions
-	max(pp.average_total_payments) as max_price, min(pp.average_total_payments) as min_price from provider_procedures pp;
-	**/
 	query := c.Builder().
 		Select(`to_json(array(select distinct pr.drg_definition from provider_procedures pp join procedures pr on pr.id=pp.procedure_id))
 		as drg_definitions, max(pp.average_total_payments) as price_max, min(pp.average_total_payments) as price_min`).
@@ -180,11 +172,10 @@ func (c *Client) CreateProcedure(payload types.Procedure) *types.Error {
 
 	// Insert procedure data
 	query := `INSERT INTO procedures
-		(average_total_payments, average_covered_charges, average_medicare_payments, total_discharges, drg_definition)
-		VALUES ($1, $2, $3, $4, $5)`
+		(total_discharges, drg_definition)
+		VALUES ($1, $2)`
 
-	_, err := c.ex.Exec(query, payload.AverageTotalPayments, payload.AverageCoveredCharges,
-		payload.AverageMedicarePayments, payload.TotalDischarges, payload.DRGDefinition)
+	_, err := c.ex.Exec(query, payload.TotalDischarges, payload.DRGDefinition)
 
 	return c.transformError(err)
 }
@@ -206,13 +197,13 @@ func (c *Client) GetProcedureByID(id string) (*types.Procedure, *types.Error) {
 }
 
 // AssignProcedureToProvider creates a link between provider and procedure
-func (c *Client) AssignProcedureToProvider(providerID int, procedureID string) *types.Error {
+func (c *Client) AssignProcedureToProvider(payload types.ProvideRrocedure) *types.Error {
 	log.Debugf("AssignProcedureToProvider")
 
-	query := `INSERT INTO provider_procedures (provider_id, procedure_id) 
-		VALUES($1, $2)`
+	query := `INSERT INTO provider_procedures (provider_id, procedure_id, average_total_payments) 
+		VALUES($1, $2, $3)`
 
-	_, err := c.ex.Exec(query, providerID, procedureID)
+	_, err := c.ex.Exec(query, payload.ProviderID, payload.ProcedureID, payload.AverageTotalPayments)
 
 	return c.transformError(err)
 }
@@ -239,10 +230,10 @@ func (c *Client) CreateZipCodeLatLong(payload types.ZipCodeLatLong) (*types.ZipC
 // nolint: unparam
 func applyMedicalDataFilter(query *builder.Builder, filter MedicalDataFilter) *builder.Builder {
 	if filter.PriceMax != nil {
-		query = query.And(builder.Lte{"pr.average_total_payments": *filter.PriceMax})
+		query = query.And(builder.Lte{"pp.average_total_payments": *filter.PriceMax})
 	}
 	if filter.PriceMin != nil {
-		query = query.And(builder.Gte{"pr.average_total_payments": *filter.PriceMin})
+		query = query.And(builder.Gte{"pp.average_total_payments": *filter.PriceMin})
 	}
 	if filter.Query != nil {
 		tokens := strings.Split(*filter.Query, " ")

@@ -64,33 +64,39 @@ func TestGetMedicalData(t *testing.T) {
 		})
 
 		procedure1 := insertProcedure(types.Procedure{
-			ID:                      "001",
-			AverageCoveredCharges:   1111,
-			AverageTotalPayments:    1111,
-			AverageMedicarePayments: 1111,
-			DRGDefinition:           "001 - PROCEDURE ONE DEFINITION",
+			ID:                   "001",
+			AverageTotalPayments: 11111,
+			DRGDefinition:        "001 - PROCEDURE ONE DEFINITION",
 		})
 
 		procedure2 := insertProcedure(types.Procedure{
-			ID:                      "002",
-			AverageCoveredCharges:   2222,
-			AverageTotalPayments:    2222,
-			AverageMedicarePayments: 2222,
-			DRGDefinition:           "002 - PROCEDURE TWO DEFINITION",
+			ID:                   "002",
+			AverageTotalPayments: 22222,
+			DRGDefinition:        "002 - PROCEDURE TWO DEFINITION",
 		})
 
 		procedure3 := insertProcedure(types.Procedure{
-			ID:                      "003",
-			AverageCoveredCharges:   3333,
-			AverageTotalPayments:    3333,
-			AverageMedicarePayments: 3333,
-			DRGDefinition:           "003 - PROCEDURE THREE DEFINITION",
+			ID:                   "003",
+			AverageTotalPayments: 22222,
+			DRGDefinition:        "003 - PROCEDURE THREE DEFINITION",
 		})
 
 		// Provider 1
-		assignProcedureToProvider(provider1.ID, procedure1.ID)
-		assignProcedureToProvider(provider1.ID, procedure2.ID)
-		assignProcedureToProvider(provider1.ID, procedure3.ID)
+		assignProcedureToProvider(types.ProvideRrocedure{
+			ProviderID:           provider1.ID,
+			ProcedureID:          procedure1.ID,
+			AverageTotalPayments: 11111,
+		})
+		assignProcedureToProvider(types.ProvideRrocedure{
+			ProviderID:           provider1.ID,
+			ProcedureID:          procedure2.ID,
+			AverageTotalPayments: 22222,
+		})
+		assignProcedureToProvider(types.ProvideRrocedure{
+			ProviderID:           provider1.ID,
+			ProcedureID:          procedure1.ID,
+			AverageTotalPayments: 33333,
+		})
 
 		// Produce medical documents for the provider
 		provider1procedure1 := produceMedicalData(zip1, provider1, procedure1)
@@ -98,16 +104,32 @@ func TestGetMedicalData(t *testing.T) {
 		provider1procedure3 := produceMedicalData(zip1, provider1, procedure3)
 
 		// Provider 2
-		assignProcedureToProvider(provider2.ID, procedure2.ID)
-		assignProcedureToProvider(provider2.ID, procedure3.ID)
+		assignProcedureToProvider(types.ProvideRrocedure{
+			ProviderID:           provider2.ID,
+			ProcedureID:          procedure2.ID,
+			AverageTotalPayments: 22222,
+		})
+		assignProcedureToProvider(types.ProvideRrocedure{
+			ProviderID:           provider1.ID,
+			ProcedureID:          procedure3.ID,
+			AverageTotalPayments: 33333,
+		})
 
 		// Produce medical documents for the provider
 		provider2procedure2 := produceMedicalData(zip2, provider2, procedure2)
 		provider2procedure3 := produceMedicalData(zip2, provider2, procedure3)
 
 		// Provider 3
-		assignProcedureToProvider(provider3.ID, procedure1.ID)
-		assignProcedureToProvider(provider3.ID, procedure3.ID)
+		assignProcedureToProvider(types.ProvideRrocedure{
+			ProviderID:           provider3.ID,
+			ProcedureID:          procedure1.ID,
+			AverageTotalPayments: 11111,
+		})
+		assignProcedureToProvider(types.ProvideRrocedure{
+			ProviderID:           provider3.ID,
+			ProcedureID:          procedure3.ID,
+			AverageTotalPayments: 11111,
+		})
 
 		// Produce medical documents for the provider
 		provider3procedure1 := produceMedicalData(zip3, provider3, procedure1)

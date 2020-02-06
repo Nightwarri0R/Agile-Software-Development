@@ -114,12 +114,13 @@ func insertProcedure(payload types.Procedure) *types.Procedure {
 		panic(err)
 	}
 
-	provider, err := dbc.GetProcedureByID(payload.ID)
+	procedure, err := dbc.GetProcedureByID(payload.ID)
 	if err != nil {
 		panic(err)
 	}
 
-	return provider
+	procedure.AverageTotalPayments = payload.AverageTotalPayments
+	return procedure
 }
 
 func insertZipCode(payload types.ZipCodeLatLong) *types.ZipCodeLatLong {
@@ -130,8 +131,8 @@ func insertZipCode(payload types.ZipCodeLatLong) *types.ZipCodeLatLong {
 	return record
 }
 
-func assignProcedureToProvider(providerID int, procedureID string) {
-	err := dbc.AssignProcedureToProvider(providerID, procedureID)
+func assignProcedureToProvider(payload types.ProvideRrocedure) {
+	err := dbc.AssignProcedureToProvider(payload)
 	if err != nil {
 		panic(err)
 	}

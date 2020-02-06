@@ -84,3 +84,10 @@ type Procedure struct {
 	DRGDefinition           string  `db:"drg_definition" json:"drg_definition"`
 	DRGDefinitionTokens     string  `db:"drg_definition_tokens" json:"-"`
 }
+
+// ProviderProcedures represents a link between a provider and procedure
+type ProvideRrocedure struct {
+	ProviderID           int     `db:"provider_id" json:"provider_id"`
+	ProcedureID          string  `db:"procedure_id" json:"procedure_id"`
+	AverageTotalPayments float64 `db:"average_total_payments" json:"average_total_payments"`
+}
