@@ -6251,7 +6251,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   text-align: center;
 }
-
+secionsecion
 /* line 182, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_footer.scss */
 .footer-area .copyright_part .footer-social a:hover {
   color: #0065e1;
@@ -6273,14 +6273,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .container{
 background-color:#B7E1FC;
-
+background-image: url(/medico/img/download.jpeg);
 text-size-adjust: auto;
 
 
 }
 
 .form-group{
+
 background-color: white;
 
 border: white;
+}
+
+
+.section{
+
+
+
 }

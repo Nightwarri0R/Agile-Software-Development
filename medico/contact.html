@@ -55,7 +55,7 @@
 <!-- Header part end-->
 
   <!-- ================ contact section start ================= -->
-  <section>
+  <section class= "secion">
     <div class="row justify-content-center">
     <div class="col-12 justify-content-center">
     <div class="container">
@@ -67,13 +67,13 @@
           </div>
           
           <br><br><div class="col-lg-8">
-            <form class="form-contact contact_form" action="form-to-email.php" method="POST" id="contactForm"
+            <form class="form-contact contact_form" id="contactForm"
               novalidate="novalidate">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
 
-                    <textarea  align="justify-content-center"class="form-control w-100" name="message" id="message" cols="30" rows="9"
+                    <textarea  class="form-control w-100" name="message" id="message" cols="30" rows="9"
                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
                       placeholder='Enter Message'></textarea>
                   </div>
@@ -98,8 +98,8 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group mt-3">
-                <button type="submit" value="SUBMIT" class="button button-contactForm btn_1">Send Message</button>
+              <div">
+                <button type="button" value="SUBMIT" onclick="mail_pop_up()" class="button button-contactForm btn_1">Send Message</button>
               </div>
             </form>
           </div>
